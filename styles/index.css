@@ -51,12 +51,14 @@ body {
 }
 
 .editor {
-  height: 330px;
+  height: 300px;
   display: flex;
   justify-content: center;
   gap: 10px;
+  overflow: hidden;
+
 }
-.editor > textarea {
+.CodeMirror{
   width: 100%;
   background: #393e46;
   padding: 4px;
