@@ -49,7 +49,13 @@ function updatePreview() {
       <body>
         ${htmlContent} 
          <script>
-          ${jsContent}
+          try{
+            (function() {
+              ${jsContent}
+            })();
+          }catch(e){
+            console.error(e);
+          }
         </script>
       </body>
     </html>
