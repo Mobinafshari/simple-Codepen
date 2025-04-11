@@ -1,2 +1,2 @@
 # simple-Codepen
-A simple Codepen by me.
+A simple Codepen With HTML, CSS and JS.
