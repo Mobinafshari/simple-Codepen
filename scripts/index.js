@@ -5,6 +5,7 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
   lineNumbers: true,
   lineWrapping: true,
 });
+htmlEditor.setValue(localStorage.getItem("html") || "<h1>Welcome to codepen!</h1>");
 
 // Convert textarea#css to a CodeMirror instance
 const cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
@@ -13,6 +14,7 @@ const cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
   lineNumbers: true,
   lineWrapping: true,
 });
+cssEditor.setValue(localStorage.getItem("css") || "h1 { color: red; }");
 
 // Convert textarea#js to a CodeMirror instance
 const jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
@@ -21,11 +23,15 @@ const jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
   lineNumbers: true,
   lineWrapping: true,
 });
+jsEditor.setValue(localStorage.getItem("js") || "console.log('Welcome to codepen!');");
 
 function updatePreview() {
-  const htmlContent = htmlEditor.getValue();
-  const cssContent = cssEditor.getValue();
-  const jsContent = jsEditor.getValue();
+  const htmlContent = htmlEditor.getValue() || localStorage.getItem("html");
+  const cssContent = cssEditor.getValue() || localStorage.getItem("css");
+  const jsContent = jsEditor.getValue() || localStorage.getItem("js");
+  localStorage.setItem("html", htmlContent);
+  localStorage.setItem("css", cssContent);
+  localStorage.setItem("js", jsContent);
 
   const iframe = document.getElementById("preview");
   const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -42,8 +48,8 @@ function updatePreview() {
       </head>
       <body>
         ${htmlContent} 
-        <script>
-          ${jsContent} 
+         <script>
+          ${jsContent}
         </script>
       </body>
     </html>
